@@ -1,2 +1,2 @@
 # codeforces_solutions
-My go at (inefficiently and terribly)solving problems on codeforces
+My go at - probably terribly - solving the problems on codeforces
