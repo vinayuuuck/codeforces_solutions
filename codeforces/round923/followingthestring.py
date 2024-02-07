@@ -1,27 +1,23 @@
-#TLE
 
 def constructStr(trace: list[int]) -> str:
-    res = ""
     countmap = {}
-    apoint = 97
-    for i in range(len(trace)):
-        if trace[i] == 0:
-            res += chr(apoint)
-            if 0 in countmap:
-                countmap[0].append(chr(apoint))
-            else:
-                countmap[0] = [chr(apoint)]
-            apoint += 1
+    apointer = 0
+    for i, e in enumerate(trace):
+        if e == 0:
+            trace[i] = chr(97+apointer)
+            apointer = apointer+1
+    for i, e in enumerate(trace):
+        if type(e) == int:
+            for k, v in countmap.items():
+                if v == e:
+                    trace[i] = k
+                    countmap[k] += 1
+                    break
         else:
-            if trace[i]-1 in countmap:
-                res += countmap[trace[i]-1].pop()
-                if trace[i] in countmap:
-                    countmap[trace[i]].append(res[-1])
-                else:
-                    countmap[trace[i]] = [res[-1]]
-            else:
-                return "-1"
-    return res
+            if e not in countmap:
+                countmap[e] = 0
+            countmap[e] += 1
+    return "".join(trace)
 
 if __name__ == "__main__":
     for _ in range(int(input())):
